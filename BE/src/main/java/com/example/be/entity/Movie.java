@@ -2,6 +2,7 @@ package com.example.be.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -22,15 +23,16 @@ public class Movie {
     private String director;
     private String actor;
     private String description;
-    private int duration; // thời lượng phim (phút)
+    private int duration;
     private LocalDateTime releaseDate;
     private String caption;
     private String posterUrl;
     private String trailerUrl;
+    @CreationTimestamp
     private LocalDateTime createdAt;
     private String bannerUrl;
     private int ageLimit;
-    private boolean isDelete;
+    private boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "categoryId", nullable = false)
