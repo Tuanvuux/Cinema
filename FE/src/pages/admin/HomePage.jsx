@@ -1,7 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
-import HomeSlider from "@/components/HomeSlider";
-import MovieSlider from "@/components/MovieSlider";
 import Footer from "@/components/layout/Footer";
+import AddMovieForm from "../../components/AddMovieForm";
+import AddCategoryForm from "../../components/AddCategoryForm";
 
 export default function HomePage() {
   return (
@@ -10,10 +10,7 @@ export default function HomePage() {
         <Navbar />
       </div>
       <div className="mt-1.5">
-        <HomeSlider />
-      </div>
-      <div className="mt-1.5">
-        <MovieSlider />
+        <AddCategoryForm />
       </div>
       <div className="mt-1.5">
         <Footer />
