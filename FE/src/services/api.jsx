@@ -1,37 +1,34 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
+const api = axios.create({
+  baseURL: "http://localhost:8080",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-// Lấy danh mục phim
-export const fetchCategories = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/categories`);
-    return response.data;
-  } catch (error) {
-    console.error("Lỗi lấy danh mục phim:", error);
-    return [];
-  }
-};
-
-// Gửi dữ liệu phim lên backend
-export const addMovie = async (movieData) => {
-  try {
-    const response = await axios.post(`${BASE_URL}/movies`, movieData);
-    return response.status === 201;
-  } catch (error) {
-    console.error("Lỗi khi thêm phim:", error);
-    throw new Error("Không thể thêm phim");
-  }
-};
-
+// Category
 export const addCategory = async (category) => {
-  return axios.post(`${BASE_URL}/categories`, category, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await api.post("/categories", category);
+  return response.data;
 };
 
 export const getCategories = async () => {
-  return axios.get(`${BASE_URL}/categories`);
+  const response = await api.get("/categories");
+  return response.data;
+};
+
+//Movie
+export const getMovieById = async (movieId) => {
+  const response = await api.get(`/movies/${movieId}`);
+  return response.data;
+};
+
+export const addMovie = async (movieData) => {
+  const response = await api.post("/movies", movieData);
+  return response.data;
+};
+export const getMovies = async () => {
+  const response = await api.get("/movies");
+  return response.data;
 };
