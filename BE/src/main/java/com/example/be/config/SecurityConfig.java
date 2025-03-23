@@ -17,8 +17,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())  // Tắt CSRF nếu không cần bảo vệ CSRF
                 .cors(Customizer.withDefaults())  // Tắt CORS nếu không cần cấu hình CORS
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("*").permitAll()  // Cho phép tất cả các API mà không cần xác thực
-                        .requestMatchers("/com/example/be/**").permitAll()  // Cho phép tất cả các yêu cầu từ package com.trinh.thread
+                        .requestMatchers("/**").permitAll()  // Cho phép tất cả các API mà không cần xác thực
+                        .requestMatchers("/**").permitAll()  // Cho phép tất cả các yêu cầu từ package com.trinh.thread
                         .anyRequest().authenticated()  // Các yêu cầu khác yêu cầu xác thực
                 )
                 .httpBasic(Customizer.withDefaults());  // Bật Basic HTTP Authentication

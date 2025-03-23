@@ -1,4 +1,5 @@
 package com.example.be.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Category {
     private String imageUrl;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude // Tránh lỗi StackOverflow khi in danh sách phim
+    @ToString.Exclude
+    @JsonIgnore
     private List<Movie> movies;
 }
