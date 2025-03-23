@@ -28,4 +28,10 @@ public class CategoryController {
     public ResponseEntity<List<Category>> getAllCategories() {
         return ResponseEntity.ok(categoryRepository.findAll());
     }
+
+//    @PostMapping
+//    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+//        Category savedCategory = categoryService.saveCategory(category);
+//        return ResponseEntity.status(201).body(savedCategory);
+//    }
 }
