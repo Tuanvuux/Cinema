@@ -1,5 +1,7 @@
 package com.example.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,6 +26,7 @@ public class Movie {
     private String actor;
     private String description;
     private int duration;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime releaseDate;
     private String caption;
     private String posterUrl;
@@ -32,7 +35,9 @@ public class Movie {
     private LocalDateTime createdAt;
     private String bannerUrl;
     private int ageLimit;
-    private boolean isDeleted;
+    @Column(name = "is_delete")
+    @Nullable
+    private Boolean isDelete = false;
 
     @ManyToOne
     @JoinColumn(name = "categoryId", nullable = false)

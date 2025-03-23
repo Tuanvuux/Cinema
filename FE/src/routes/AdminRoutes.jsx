@@ -1,10 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/admin/HomePage";
+import HomePage from "../pages/admin/AddCategory.jsx";
+import AddCategory from "../pages/admin/AddCategory.jsx";
+import AddMovie from "@/pages/admin/AddMovie.jsx";
 
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/addcategory" element={<AddCategory />} />
+      <Route path="/addmovie" element={<AddMovie />} />
     </Routes>
   );
 };

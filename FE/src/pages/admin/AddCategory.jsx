@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 import AddMovieForm from "../../components/AddMovieForm";
 import AddCategoryForm from "../../components/AddCategoryForm";
 
-export default function HomePage() {
+export default function AddCategory() {
   return (
     <div className="">
       <div className="">
