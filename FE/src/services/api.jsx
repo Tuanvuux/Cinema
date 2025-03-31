@@ -32,3 +32,14 @@ export const getMovies = async () => {
   const response = await api.get("/movies");
   return response.data;
 };
+//User
+export const registerAccount = async (formData) => {
+  const response = await api.post("/register", formData);
+  return response.data;
+};
+export const login = async ({ username, password }) => {
+  const response = await api.post("/login", null, {
+    params: { username, password },
+  });
+  return response.data;
+};
