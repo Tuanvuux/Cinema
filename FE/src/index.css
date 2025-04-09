@@ -66,6 +66,7 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   } */
-body {
-  @apply bg-white text-white;
-}
+
+/*:root {*/
+/*  @apply bg-white text-black;*/
+/*}*/

@@ -43,3 +43,62 @@ export const login = async ({ username, password }) => {
   });
   return response.data;
 };
+
+export const updateMovie = async (movieId, movieData) => {
+  const response = await api.put(`/movies/${movieId}`, movieData);
+  return response.data;
+};
+
+export const deleteMovie = async (movieId) => {
+  const response = await api.delete(`/movies/${movieId}`);
+  return response.data;
+};
+
+export const toggleDeleteStatus = async (movieId, isDelete) => {
+  const response = await api.patch(`/movies/${movieId}/toggle-delete`, { isDelete: isDelete });
+  return response.data;
+};
+
+// Room
+export const getRooms = async () => {
+  const response = await api.get("/rooms");
+  return response.data;
+};
+
+export const addRoom = async (roomData) => {
+  const response = await api.post("/rooms", roomData);
+  return response.data;
+};
+
+export const updateRoom = async (roomId, roomData) => {
+  const response = await api.put(`/rooms/${roomId}`, roomData);
+  return response.data;
+};
+
+export const deleteRoom = async (roomId) => {
+  const response = await api.delete(`/rooms/${roomId}`);
+  return response.data;
+};
+
+// Showtime
+export const getShowtime = async () => {
+  const response = await api.get("/showtime");
+  return response.data;
+};
+
+export const addShowtime = async (ShowtimeData) => {
+  const response = await api.post("/showtime", ShowtimeData);
+  return response.data;
+};
+
+export const updateShowtime = async (ShowtimeId, ShowtimeData) => {
+  const response = await api.put(`/showtime/${ShowtimeId}`, ShowtimeData);
+  return response.data;
+};
+
+export const deleteShowtime = async (showtimeId) => {
+  const response = await api.delete(`/showtime/${showtimeId}`);
+  return response.data;
+};
+
+
