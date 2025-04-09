@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/admin/AddCategory.jsx";
 import AddCategory from "../pages/admin/AddCategory.jsx";
 import AddMovie from "@/pages/admin/AddMovie.jsx";
 import RoomManagement from "@/pages/admin/RoomManagement.jsx";

@@ -34,6 +34,10 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
+        <div>
+          <Link to="/login">Đăng nhập</Link> /{" "}
+          <Link to="/register">Đăng ký</Link>
+        </div>
       </div>
     </nav>
   );
