@@ -1,6 +1,8 @@
 package com.example.be.service;
 
 import com.example.be.entity.Movie;
+import com.example.be.entity.Room;
+import com.example.be.entity.Showtime;
 import com.example.be.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
