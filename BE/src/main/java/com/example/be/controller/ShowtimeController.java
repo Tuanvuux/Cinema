@@ -4,10 +4,10 @@ package com.example.be.controller;
 import com.example.be.entity.Category;
 import com.example.be.entity.Movie;
 import com.example.be.entity.Room;
-import com.example.be.entity.Showtime;
+import com.example.be.entity.ShowTime;
 import com.example.be.service.MovieService;
 import com.example.be.service.RoomService;
-import com.example.be.service.ShowtimeService;
+import com.example.be.service.ShowTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:5173")
 public class ShowtimeController {
     @Autowired
-    private ShowtimeService showtimeservice;
+    private ShowTimeService showTimeService;
 
     @Autowired
     private MovieService movieservice;
@@ -29,7 +29,7 @@ public class ShowtimeController {
     private RoomService roomservice;
 
     @PostMapping
-    public ResponseEntity<?> addShowtime(@RequestBody Showtime showtimeData) {
+    public ResponseEntity<?> addShowtime(@RequestBody ShowTime showtimeData) {
         try {
             Optional<Movie> movieOpt = movieservice.getMovieById(showtimeData.getMovie().getMovieId());
             if (movieOpt.isEmpty()) {
@@ -43,30 +43,26 @@ public class ShowtimeController {
             }
             showtimeData.setRoom(roomOpt.get());
 
-            Showtime savedShowtime = showtimeservice.saveShowtime(showtimeData);
+            ShowTime savedShowtime = showTimeService.saveShowtime(showtimeData);
             return ResponseEntity.status(201).body(savedShowtime);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 
-    @GetMapping
-    public List<Showtime> getShowtime() {
-        return showtimeservice.getAllShowtimes();
-    }
 
     @GetMapping("/{id}")
-    public Showtime getShowtimeById(@PathVariable Long id) {
-        return showtimeservice.getShowtimeId(id);
+    public ShowTime getShowtimeById(@PathVariable Long id) {
+        return showTimeService.getShowtimeId(id);
     }
 
     @PutMapping("/{id}")
-    public Showtime updateShowtime(@PathVariable Long id, @RequestBody Showtime showtime) {
-        return showtimeservice.updateShowtime(id, showtime);
+    public ShowTime updateShowtime(@PathVariable Long id, @RequestBody ShowTime showtime) {
+        return showTimeService.updateShowtime(id, showtime);
     }
 
     @DeleteMapping("/{id}")
     public String deleteShowtime(@PathVariable Long id) {
-        return showtimeservice.deletedShowtime(id);
+        return showTimeService.deletedShowtime(id);
     }
 }

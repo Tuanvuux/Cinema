@@ -2,19 +2,19 @@ package com.example.be.service;
 
 import com.example.be.entity.Movie;
 import com.example.be.entity.Room;
-import com.example.be.entity.Showtime;
+import com.example.be.entity.ShowTime;
 import com.example.be.repository.MovieRepository;
 import com.example.be.repository.RoomRepository;
-import com.example.be.repository.ShowtimeRepository;
+import com.example.be.repository.ShowTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ShowtimeService {
+public class ShowTimeService {
     @Autowired
-    private ShowtimeRepository showtimeRepository;
+    private ShowTimeRepository showTimeRepository;
 
     @Autowired
     private MovieRepository movieRepository;
@@ -22,20 +22,17 @@ public class ShowtimeService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public Showtime addShowtime(Showtime showtime){
-        return showtimeRepository.save(showtime);
+    public ShowTime addShowtime(ShowTime showtime){
+        return showTimeRepository.save(showtime);
     }
 
-    public List<Showtime> getAllShowtimes(){
-        return showtimeRepository.findAll();
+
+    public ShowTime getShowtimeId(Long id){
+        return showTimeRepository.findById(id).orElseThrow(() -> new RuntimeException("Showtime not found"));
     }
 
-    public Showtime getShowtimeId(Long id){
-        return showtimeRepository.findById(id).orElseThrow(() -> new RuntimeException("Showtime not found"));
-    }
-
-    public Showtime updateShowtime(Long id, Showtime showtimeDetails) {
-        Showtime existingShowtime = getShowtimeId(id);
+    public ShowTime updateShowtime(Long id, ShowTime showtimeDetails) {
+        ShowTime existingShowtime = getShowtimeId(id);
 
         // Lấy movie từ database dựa theo ID
         Movie movie = movieRepository.findById(showtimeDetails.getMovie().getMovieId())
@@ -50,15 +47,15 @@ public class ShowtimeService {
         existingShowtime.setStartTime(showtimeDetails.getStartTime());
         existingShowtime.setEndTime(showtimeDetails.getEndTime());
 
-        return showtimeRepository.save(existingShowtime);
+        return showTimeRepository.save(existingShowtime);
     }
 
     public String deletedShowtime(Long id){
-        showtimeRepository.deleteById(id);
+        showTimeRepository.deleteById(id);
         return "Showtime deleted successfully!";
     }
 
-    public Showtime saveShowtime(Showtime showtime){
-        return showtimeRepository.save(showtime);
+    public ShowTime saveShowtime(ShowTime showtime){
+        return showTimeRepository.save(showtime);
     }
 }

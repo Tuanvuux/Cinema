@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Showtime {
+public class ShowTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
