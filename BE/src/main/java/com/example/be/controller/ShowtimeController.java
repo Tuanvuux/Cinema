@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/showtime")
-public class ShowtimeController {
+public class ShowTimeController {
     @Autowired
     ShowTimeService showTimeService;
     @GetMapping("")
