@@ -14,10 +14,10 @@ export default function AddMovieForm() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCategories();
+    fetchCategories();
   }, []);
 
-  const getCategories = async () => {
+  const fetchCategories = async () => {
     try {
       const data = await getCategories();
       setCategories(data);
