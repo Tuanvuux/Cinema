@@ -608,11 +608,11 @@ export default function ShowtimeManagement () {
                                                    onChange={() => handleShowtimeSelect(Showtime.showtimeId)}
                                             />
                                         </td>
-                                        <td className="p-3 font-medium">{Showtime.movie.name}</td>
-                                        <td className="p-3">{Showtime.room.name}</td>
-                                        <td className="p-3">{Showtime.showDate}</td>
-                                        <td className="p-3">{Showtime.startTime}</td>
-                                        <td className="p-3">{Showtime.endTime}</td>
+                                        <td className="p-3 font-medium text-center">{Showtime.movie.name}</td>
+                                        <td className="p-3 text-center">{Showtime.room.name}</td>
+                                        <td className="p-3 text-center">{Showtime.showDate}</td>
+                                        <td className="p-3 text-center">{Showtime.startTime}</td>
+                                        <td className="p-3 text-center">{Showtime.endTime}</td>
                                         <td className="p-3 text-center">
                                             <button
                                                 onClick={() => handleEditShowtime(Showtime)}
