@@ -1,5 +1,6 @@
 package com.example.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @ToString
 public class ShowTime {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long showtimeId;
