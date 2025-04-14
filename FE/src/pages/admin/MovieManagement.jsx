@@ -698,17 +698,17 @@ export default function MovieManagement() {
                                                        onChange={() => handleSelect(movie.movieId)}
                                                 />
                                             </td>
-                                            <td className="p-3 font-medium">
+                                            <td className="p-3 font-medium text-center">
                                                 {movie.name}
                                                 {movie.isDelete &&
                                                     <span className="ml-2 text-xs text-red-500">(đã xóa)</span>}
                                             </td>
                                             {/*<td className="p-3 font-medium">{movie.name}</td>*/}
-                                            <td className="p-3">{movie.director}</td>
-                                            <td className="p-3">{movie.duration}</td>
-                                            <td className="p-3">{movie.releaseDate}</td>
-                                            <td className="p-3">{movie.ageLimit}</td>
-                                            <td className="p-3">{movie.caption}</td>
+                                            <td className="p-3 text-center">{movie.director}</td>
+                                            <td className="p-3 text-center">{movie.duration}</td>
+                                            <td className="p-3 text-center">{movie.releaseDate}</td>
+                                            <td className="p-3 text-center">{movie.ageLimit}</td>
+                                            <td className="p-3 text-center">{movie.caption}</td>
                                             <td className="p-3 text-center">
                                                 <button
                                                     onClick={() => handleEditShowtime(movie)}

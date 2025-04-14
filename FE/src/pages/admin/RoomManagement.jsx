@@ -437,6 +437,9 @@ export default function RoomManagement () {
                                 </label>
                             </div>
                         </div>
+
+                    </div>
+                    <div className="flex justify-between mb-6">
                         <button
                             className="bg-gray-900 text-white px-4 py-2 rounded-md flex items-center"
                             onClick={() => setShowAddModal(true)}
@@ -453,7 +456,6 @@ export default function RoomManagement () {
                             <span className="material-icons mr-1">delete</span>
                             Xóa phòng lịch chiếu đã chọn ({selectedRooms.length})
                         </button>
-
                     </div>
 
                     {/* Room Table */}
@@ -487,8 +489,8 @@ export default function RoomManagement () {
                                                    onChange={() => handleRoomSelect(room.id)}
                                             />
                                         </td>
-                                        <td className="p-3 font-medium">{room.name}</td>
-                                        <td className="p-3">{room.seatCount}</td>
+                                        <td className="p-3 font-medium text-center">{room.name}</td>
+                                        <td className="p-3 text-center">{room.seatCount}</td>
                                         <td className="p-3 text-center">
                                             <div className="flex justify-center">
                                                 <label className="relative inline-flex items-center cursor-pointer">
