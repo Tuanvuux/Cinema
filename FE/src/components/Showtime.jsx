@@ -1,28 +1,6 @@
-import { useState } from "react";
-
-const schedule = {
-  "2024-03-17": [
-    {
-      title: "(LỒNG TIẾNG) SÁT THỦ VÔ CÙNG CỰC HÀI (T16)",
-      poster:
-        "https://metiz.vn/media/poster_film/satthuvocungcuchaiLTPoster.jpg", // Thay bằng link ảnh thực tế
-      showtimes: [
-        { time: "09:30-11:17", room: "05" },
-        { time: "14:10-15:57", room: "04" },
-        { time: "19:20-21:07", room: "02" },
-        { time: "22:10-23:57", room: "04" },
-      ],
-    },
-    {
-      title: "(PHỤ ĐỀ) SÁT THỦ VÔ CÙNG CỰC HÀI (T16)",
-      poster: "https://metiz.vn/media/poster_film/hitman_2_.jpg", // Thay bằng link ảnh thực tế
-      showtimes: [
-        { time: "13:10-14:57", room: "03" },
-        { time: "17:10-18:57", room: "01" },
-      ],
-    },
-  ],
-};
+import { useEffect, useState } from "react";
+import { getShowTimes } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const getWeekday = (dateStr) => {
   const days = [
@@ -38,17 +16,52 @@ const getWeekday = (dateStr) => {
 };
 
 const Showtime = () => {
+  const [showtimes, setShowtimes] = useState([]); // Đổi thành mảng thay vì đối tượng
+  const [loading, setLoading] = useState(true);
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState("2024-03-17");
+  const [selectedDate, setSelectedDate] = useState(
+    today.toISOString().split("T")[0]
+  );
 
+  const navigate = useNavigate();
+
+  const handleSelectShowtime = (showtimeId) => {
+    navigate(`/seats/${showtimeId}`);
+  };
+
+  useEffect(() => {
+    const fetchShowtimes = async () => {
+      try {
+        const showtimeList = await getShowTimes();
+        setShowtimes(showtimeList); // Đảm bảo dữ liệu là mảng
+      } catch (error) {
+        console.error("Error fetching showtimes:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShowtimes();
+  }, []);
+
+  // Lọc ngày để chọn các ngày trong tuần
   const dates = Array.from({ length: 7 }, (_, i) => {
     const date = new Date(today);
     date.setDate(today.getDate() + i);
-    return date.toISOString().split("T")[0]; // Format YYYY-MM-DD
+    return date.toISOString().split("T")[0];
   });
 
+  const filteredShowtimes = showtimes.filter(
+    (movie) =>
+      Array.isArray(movie.showTimeList) &&
+      movie.showTimeList.some((show) => show.showDate === selectedDate)
+  );
+
+  // Hàm để cắt bớt giây
+  const formatTime = (time) => time.slice(0, 5); // Cắt bớt giây (giữ lại giờ và phút)
+
   return (
-    <div className="p-6">
+    <div className="p-6 bg-black">
       <h2 className="text-orange-500 text-2xl font-bold mb-4">Lịch chiếu</h2>
 
       {/* Chọn ngày */}
@@ -73,26 +86,45 @@ const Showtime = () => {
 
       {/* Danh sách phim */}
       <div className="mt-6">
-        <h3 className="text-lg font-semibold">Chọn lịch chiếu</h3>
-        {schedule[selectedDate]?.length > 0 ? (
-          schedule[selectedDate].map((movie, index) => (
-            <div key={index} className="mt-4 flex space-x-4">
+        <h3 className="text-lg font-semibold text-white">Chọn lịch chiếu</h3>
+
+        {loading ? (
+          <p className="text-white mt-4">Đang tải lịch chiếu...</p>
+        ) : filteredShowtimes.length > 0 ? (
+          filteredShowtimes.map((movie, index) => (
+            <div
+              key={index}
+              className="mt-4 flex space-x-4 bg-black rounded-lg p-4"
+            >
               <img
-                src={movie.poster}
-                alt={movie.title}
+                src={movie.posterUrl}
+                alt={movie.movieName}
                 className="w-24 h-36 object-cover rounded"
               />
               <div>
-                <h4 className="font-bold">{movie.title}</h4>
+                <h4 className="font-bold">{movie.movieName}</h4>
                 <div className="mt-2 grid grid-cols-2 gap-2">
-                  {movie.showtimes.map((show, idx) => (
-                    <div key={idx} className="border p-2 text-center rounded">
-                      <p className="font-semibold">{show.time}</p>
-                      <p className="text-sm text-gray-500">
-                        Phòng chiếu {show.room}
-                      </p>
-                    </div>
-                  ))}
+                  {Array.isArray(movie.showTimeList) &&
+                    movie.showTimeList
+                      .filter((show) => show.showDate === selectedDate)
+                      .map((show, idx) => (
+                        <button
+                          className="bg-orange-500 text-white border border-white cursor-pointer"
+                          key={show.showtimeId}
+                          onClick={() => handleSelectShowtime(show.showtimeId)}
+                        >
+                          <div className="flex flex-col">
+                            <div className="p-1">
+                              {formatTime(show.startTime)} -{" "}
+                              {formatTime(show.endTime)}
+                            </div>
+                            <div className="border-t border-white p-1 text-sm">
+                              phòng chiếu:
+                              <br /> {show.room.name}
+                            </div>
+                          </div>
+                        </button>
+                      ))}
                 </div>
               </div>
             </div>

@@ -1,7 +1,5 @@
 package com.example.be.controller;
-
-
-import com.example.be.entity.Category;
+import com.example.be.dto.response.ShowTimeResponse;
 import com.example.be.entity.Movie;
 import com.example.be.entity.Room;
 import com.example.be.entity.ShowTime;
@@ -11,14 +9,13 @@ import com.example.be.service.ShowTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/showtime")
 @CrossOrigin(origins = "http://localhost:5173")
-public class ShowtimeController {
+public class ShowTimeController {
     @Autowired
     private ShowTimeService showTimeService;
 
@@ -50,12 +47,6 @@ public class ShowtimeController {
         }
     }
 
-
-    @GetMapping("/{id}")
-    public ShowTime getShowtimeById(@PathVariable Long id) {
-        return showTimeService.getShowtimeId(id);
-    }
-
     @PutMapping("/{id}")
     public ShowTime updateShowtime(@PathVariable Long id, @RequestBody ShowTime showtime) {
         return showTimeService.updateShowtime(id, showtime);
@@ -65,4 +56,7 @@ public class ShowtimeController {
     public String deleteShowtime(@PathVariable Long id) {
         return showTimeService.deletedShowtime(id);
     }
+    @GetMapping("")
+    public ResponseEntity<List<ShowTimeResponse>> getAllShowTime() {
+        return ResponseEntity.ok(showTimeService.findAllShowTime());}
 }

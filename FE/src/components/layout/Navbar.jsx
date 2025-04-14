@@ -9,7 +9,7 @@ export default function Navbar() {
         </h1>
         <ul className="flex space-x-6 text-lg">
           <li>
-            <Link to="/schedule" className="hover:text-yellow-400">
+            <Link to="/showtime" className="hover:text-yellow-400">
               Lịch chiếu
             </Link>
           </li>

@@ -55,7 +55,9 @@ export const deleteMovie = async (movieId) => {
 };
 
 export const toggleDeleteStatus = async (movieId, isDelete) => {
-  const response = await api.patch(`/movies/${movieId}/toggle-delete`, { isDelete: isDelete });
+  const response = await api.patch(`/movies/${movieId}/toggle-delete`, {
+    isDelete: isDelete,
+  });
   return response.data;
 };
 
@@ -81,7 +83,7 @@ export const deleteRoom = async (roomId) => {
 };
 
 // Showtime
-export const getShowtime = async () => {
+export const getShowtimes = async () => {
   const response = await api.get("/showtime");
   return response.data;
 };
@@ -100,5 +102,3 @@ export const deleteShowtime = async (showtimeId) => {
   const response = await api.delete(`/showtime/${showtimeId}`);
   return response.data;
 };
-
-

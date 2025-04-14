@@ -29,8 +29,8 @@ export const uploadVideoToCloudinary = async (file) => {
 
   try {
     const res = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`,
-        formData
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`,
+      formData
     );
     return res.data.secure_url;
   } catch (error) {

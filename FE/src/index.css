@@ -34,6 +34,8 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+body {
+  @apply bg-white text-white;
 }
 
 button {
@@ -66,7 +68,3 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   } */
-
-/*:root {*/
-/*  @apply bg-white text-black;*/
-/*}*/

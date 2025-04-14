@@ -48,7 +48,7 @@ const movies = [
 
 export default function MovieSlider() {
   return (
-    <div className="w-full flex flex-col items-center px-4">
+    <div className="w-full bg-black flex flex-col items-center px-4">
       {/* Tabs */}
       <div className="flex gap-4 mb-4">
         <button className="bg-orange-500 text-white px-6 py-2 rounded-full font-bold">

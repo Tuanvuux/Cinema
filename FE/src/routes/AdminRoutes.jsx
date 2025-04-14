@@ -10,9 +10,9 @@ const AdminRoutes = () => {
     <Routes>
       <Route path="addcategory" element={<AddCategory />} />
       <Route path="addmovie" element={<AddMovie />} />
-        <Route path="roommanagement" element={<RoomManagement/>}/>
-        <Route path="showtimemanagement" element={<ShowTimeManagement/>}/>
-        <Route path="moviemanagement" element={<MovieManagement/>}/>
+      <Route path="roommanagement" element={<RoomManagement />} />
+      <Route path="showtimemanagement" element={<ShowTimeManagement />} />
+      <Route path="moviemanagement" element={<MovieManagement />} />
     </Routes>
   );
 };

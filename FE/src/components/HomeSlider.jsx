@@ -37,7 +37,7 @@ export default function s() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className=" bg-black w-full flex flex-col items-center">
       {/* Slider chính */}
       <Swiper
         modules={[Navigation, Thumbs, Autoplay]}
