@@ -9,7 +9,6 @@ import com.example.be.repository.RoomRepository;
 import com.example.be.repository.ShowTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -21,8 +20,6 @@ public class ShowTimeService {
     @Autowired
     private MovieRepository movieRepository;
 
-    @Autowired
-    MovieService movieService;
 
     @Autowired
     private RoomRepository roomRepository;
